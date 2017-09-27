@@ -1,7 +1,8 @@
 module Main exposing (..)
 
-import Html exposing (Html, text, div, img)
-import Html.Attributes exposing (src)
+import Html exposing (Html, text, div, img, input)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onInput)
 
 
 ---- MODEL ----
@@ -38,6 +39,7 @@ view model =
     div []
         [ img [ src "/logo.svg" ] []
         , div [] [ text "Your Elm App is working!" ]
+        , input [ type_ "text" ] []
         ]
 
 
