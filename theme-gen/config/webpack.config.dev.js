@@ -200,7 +200,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.js$/, /\.html$/, /\.json$/, /\.scss$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
@@ -214,6 +214,30 @@ module.exports = {
                 attrs: [':data-src'],
               },
             },
+          },
+          {
+            // test: [/\_variables.scss$/,],
+            test: [/\.scss$/,],
+            exclude: [/\_mixins.scss/],
+            use: 'raw-loader'
+          },
+          {
+            // exclude: [/\_mixins/],
+            // include: [path.resolve(__dirname, "./node_modules/bootstrap")],
+            test: [/\_mixins.scss$/],
+            use: [
+              {
+                loader: "raw-loader"
+              },
+              {
+                loader: "sass-loader",
+                options: {
+                  includePaths: [
+                    "node_modules"
+                  ]
+                },
+              },
+            ],
           },
         ],
       },
